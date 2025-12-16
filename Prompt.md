@@ -65,26 +65,32 @@ Add a product update feature that allows users to perform basic update actions (
 **How would you iterate and collaborate with the AI tool to implement this feature?**
 
 [
-    I would use the AI tool in an iterative and controlled manner, treating it as a development assistant rather than a single-shot solution.
-    My approach would be:
-    -Start with a clear architectural prompt:
+I would use the AI tool in an iterative and controlled manner, treating it as a development assistant rather than a single-shot solution.
+    
+ My approach would be:
+
+ -Start with a clear architectural prompt:
     --Provide context about the existing Spring Boot architecture (controller-service-repository pattern, MapStruct usage, exception handling strategy) and clearly define constraints.
+    
     -Implement incrementally:
     --First, ask the AI to generate service interfaces and method contracts.
     --Next, implement service implementations with business validation
     --Then add custom exceptions and global exception handling.
     --Finally, implement the controller layer and validate HTTP status codes.
-    -Validate against requirements:
+    
+ -Validate against requirements:
     After each iteration, I would:
     --Review code for REST correctness (HTTP 200 vs 204 vs 400 vs 404).
     --Ensure separation of concerns (no business logic in controllers).
     --Confirm consistency in error and success response formats.
-    -Refine and harden the solution:
+ 
+ -Refine and harden the solution:
     Use follow-up prompts to:
     --Improve naming conventions
     --Reduce duplication
     --Align with Spring Boot best practices
     --Ensure maintainability and extensibility
-    -Final human review:
-    --Before considering the solution complete, I would manually review and test the code, ensuring it aligns with real-world production standards.
+
+ -Final human review:
+    Before considering the solution complete, I would manually review and test the code, ensuring it aligns with real-world production standards.
 ]
