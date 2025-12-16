@@ -72,7 +72,7 @@ class ProductServiceTest {
                 productService.getAllProducts();
 
         // ❌ Fails BEFORE fix because DTO lowercases category
-        assertEquals("Electronics", result.get(0).getCategory());
+        assertEquals("Electronics", result.getFirst().getCategory());
     }
 
 
@@ -102,6 +102,10 @@ class ProductServiceTest {
         assertEquals(4, appliances.size());
     }
 
+    // ----------------------------
+    // Test: Filter by price range only using specification builder
+    // ----------------------------
+
     @Test
     void shouldFilterProductsUsingSpecificationBuilderByPriceRange() {
         List<Product> inRange = mockProducts.stream()
@@ -117,6 +121,9 @@ class ProductServiceTest {
         result.forEach(p -> assertTrue(p.getPrice() >= 100 && p.getPrice() <= 300));
     }
 
+    // ----------------------------
+    // Test: Filter by multiple parameters using specification builder
+    // ----------------------------
     @Test
     void shouldFilterProductsUsingSpecificationBuilderByCategoryAndPriceAndAvailability() {
         List<Product> filtered = mockProducts.stream()
@@ -129,7 +136,7 @@ class ProductServiceTest {
                 .thenReturn(filtered);
 
         List<ProductDTO> result = productService.filterProductsUsingSpecificationBuilder(
-                null, "Electronics", 200.0, 500.0, true
+                "Lap", "Electronics", 200.0, 500.0, true
         );
 
         assertEquals(2, result.size());
@@ -140,6 +147,9 @@ class ProductServiceTest {
         });
     }
 
+    // -------------------------
+    // Name Filter
+    // -------------------------
 
     @Test
     void shouldReturnProductsByName() {
@@ -174,8 +184,6 @@ class ProductServiceTest {
     }
 
 
-
-
     @Test
     void shouldReturnProductsByNamePartialMatch() {
         // Search for products containing "watch" (matches "Wristwatch")
@@ -200,6 +208,9 @@ class ProductServiceTest {
 
         assertTrue(result.isEmpty());
     }
+    // -------------------------
+    // Category Filter
+    // -------------------------
 
     @Test
     void shouldReturnProductsByCategory() {
